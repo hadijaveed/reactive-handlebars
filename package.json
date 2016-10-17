@@ -1,0 +1,20 @@
+{
+  "name": "reactive-handlebars",
+  "version": "0.0.0",
+  "description": "A miniature library for updating DOM elements reactively and for providing observer methods to oberve objects passed to the handlears templates",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "handlebars",
+    "reavtive",
+    "javascript",
+    "templating"
+  ],
+  "author": "hadi javeed <hadij.pk@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "lodash": "^4.16.4"
+  }
+}
