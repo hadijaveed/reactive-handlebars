@@ -12,6 +12,10 @@ Handlebars is one of the most popular templating engines. Complicated UIs, data 
 ### Getting Started
 #### Install
 ```
+bower install reactive-handlebars
+```
+
+```
 npm install reactive-handlebars
 ```
 #### Dependencies
