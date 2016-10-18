@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Reactive handlebars Performance</title>
+   </head>
+   <body>
+      <h1>Reactive Handlebars Performance Test</h1>
+      <button name="reverse">Reverse</button>
+      <div class="timeTaken"></div>
+      <div class="container"></div>
+      <script id="tpl" type="text/x-handlebars-template">
+         <ul>
+            {{#each items}}
+               <li>Item #{{value}}</li>
+            {{/each}}
+         </ul>
+
+      </script>
+
+
+
+            
+      <!-- Scripts -->
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.js'></script>
+      <script src='../../src/reactive-handlebars.min.js'></script>
+      <script type='text/javascript'>
+         
+         // start of reactive test here
+         let items = [];
+         for ( let i = 0; i < 10000; i++ ) {
+            items.push( { value: i } );
+         }
+         let testTpl = new ReactiveHbs({
+            container: '.container',
+            template: '#tpl',
+            data: {
+               items: items
+            }
+         });
+
+         $('button[name="reverse"]').on('click', function() {
+            let x = new Date().getTime();
+            testTpl.set('items', testTpl.get('items').reverse());
+            setTimeout( () => {
+               let timeTaken = ( new Date().getTime() - x ) + 'ms';
+               console.log('see the time taken here ', timeTaken);
+               $('.timeTaken').html(timeTaken);
+
+            }, 1 );
+         });
+
+         testTpl.render();
+
+
+
+         
+      </script>
+      
+   </body>
+</html>

@@ -26,6 +26,9 @@ ReactiveHbs.prototype.setOptions = function(options) {
    // subscribed data attributes to react on change
    this.reactive = {};
    this.renderCallback = null;
+   
+   // template promises
+   this.tplPromises = {};
 };
 
 ReactiveHbs.prototype.helpers = function(helpers) {
@@ -79,7 +82,7 @@ ReactiveHbs.prototype.pop = function(attr, value, cb) {
    if ( typeof attr !== 'string' ) return console.error('parameter to push value in should be a string ');
    if ( typeof value === 'undefined' ) return console.error('value should be there to pop ');
    var arr = _.get(this.options.data, attr);
-   if ( !Array.isArray(arr) ) return console.error('values can only be poped in array');
+   if ( !_.isArray(arr) ) return console.error('values can only be poped in array');
    if ( !_.includes(arr, value) ) return;
    _.pull(arr, value);
    this.render();
@@ -103,18 +106,28 @@ ReactiveHbs.prototype.setData = function(obj, cb) {
 };
 
 // run observers on change if the observer is bind to some data key
-ReactiveHbs.prototype.runSubscribedFunctions = function(attr) {
+ReactiveHbs.prototype.runSubscribedFunctions = function(attr, options) {
    if ( !_.get(this.reactive, attr) ) return;
    var self = this;
-   _.each( _.get(this.reactive, attr), function(fn) {
-      fn(self);
+   _.each( _.get(this.reactive, attr), function(react) {
+      react(self);
    });
 };
 
-ReactiveHbs.prototype.setPromise = function(promise, cb) {
-   if ( !promise.then || !promise.catch ) return console.error('the parameter should be promise with callback');
+ReactiveHbs.prototype.promises = function(obj) {
+   if ( typeof obj !== 'object' ) return console.error('expected paramter is an object !');
+   this.tplPromises = obj;
+};
+
+ReactiveHbs.prototype.executePromise = function(promise, cb) {
+   if ( typeof promise !== 'string' ) return console.error('expected a string as a first parameter ');
+   if ( typeof cb !== 'function' ) return console.error('expected second parameter as a callback function ');
+   var thisPromise = _.get(this.tplPromises, promise);
+   if ( typeof thisPromise !== 'function' ) return console.error('the promise you specified doesnot exist');
+   var promiseReturn = thisPromise();
+   if ( !promiseReturn || !promiseReturn.then || !promiseReturn.catch ) return console.error('function should return a promise ');
    var self = this;
-   promise
+   promiseReturn
    .then(function(data) {
       cb(null, data, self);
    })
@@ -124,14 +137,18 @@ ReactiveHbs.prototype.setPromise = function(promise, cb) {
 };
 
 // subscribe the reactive callbacks
-ReactiveHbs.prototype.reactOnChange = function(attr, cb) {
+ReactiveHbs.prototype.reactOnChange = function(attr, options, cb) {
    if ( typeof attr !== 'string' ) return console.error('attribute to run react on change should be a string type ');
-   if ( typeof cb !== 'function' ) return console.error('second parameter to reactive should be a callback function ');
+   if ( typeof options !== 'object' ) return console.error('expected second paramter an object ');
+   if ( typeof cb !== 'function' ) return console.error('expected third parameter a function ');
+   var fn = cb;
+   if ( options && options.debounce ) fn = _.debounce(cb, options.debounce);
+   if ( options && options.throttle ) fn = _.throttle(cb, options.throttle);
    if ( !_.get(this.options.data, attr) ) return console.error('to bind observer key should be in template data object ');
    if ( _.get(this.reactive, attr) ) {
-      _.get(this.reactive, attr).push(cb);
+      _.get(this.reactive, attr).push(fn);
    } else {
-      _.set(this.reactive, attr, [cb]);
+      _.set(this.reactive, attr, [fn]);
    }
 };
 
