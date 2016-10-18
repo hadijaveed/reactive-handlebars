@@ -1,0 +1,218 @@
+body { font-family: 'Open Sans', sans-serif; }
+.clearfix:before, .clearfix:after { clear: both; }
+.overlay {
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 10;
+   background-color: rgba(0,0,0,0.5); }
+.modal {
+   display: none;
+   width: 60%;
+   height: 400px;
+   border-radius: 5px;
+   background: #fff;
+   box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+   overflow: auto;
+   margin: auto;
+   position: fixed;
+   top: 0; left: 0; bottom: 0; right: 0;
+   z-index: 50; }
+   @media (max-width: 700px) {
+      .modal {
+         width: 90%;} }
+   .modal .container {
+      padding: 0.1% 2% 0.1% 2%;}
+      .modal .container i.fa-tasks {
+         display: inline-block;
+         float: left;
+         font-size: 1.3em; 
+         margin: 18px 0.8em 0px 0px;}
+      .modal .container input.edit-title {
+         display: inline-block;
+         float: left;
+         width: 80%;
+         border-radius: 1px;
+         padding: 5px;
+         margin-top: 17px;
+         display: none; }
+      .modal .container p.title {
+         display: inline-block;
+         float: left;
+         width: 80%; }
+      .modal .container i.fa-times {
+         float: right;
+         margin: 9px 0px 0px 1px;
+         font-size: 1.3em;
+         display: inline-block;
+         cursor: pointer;}
+      .modal .container .description {
+         display: inline-block;
+         float: left;
+         width: 50%;
+         margin-left: 2.2em; }
+         .modal .container .description p {
+            -webkit-margin-before: 0.2em;
+            -webkit-margin-after: 0.2em; }
+         @media (max-width: 700px) {
+            .modal .container .description {
+               float: none;
+               width: 100%;
+               margin-left: 0em; }}
+              .modal .container .description i.fa-list, .modal .container .description i.fa-comment {
+                  font-size: 0.9em;
+                  display: inline-block;
+                  float: left;
+                  color: #616161;
+                  margin: 7px 8px 0px 0px; }
+               .modal .container .description i.fa-comment { margin-top: 3px; }
+               .modal .container .description div.comment {
+                  margin-top: 15px;
+                  border: 1px solid #9c9c9c;
+                  border-radius: 5px;
+                  padding: 5px;
+                  background: #e6e6e6; }
+               .modal .container .description textarea.comment-box, .modal .container .description textarea.description-box {
+                  font-family: sans-serif;
+                  width: 100%;
+                  min-height: 50px;
+                  margin-top: 5px;
+                  margin-bottom: 9px; }
+                  .modal .container .description textarea.description-box {
+                     display: none; }
+               .modal .container .description a.add-comment {
+                  padding: 10px 22px;
+                  border-radius: 5px;
+                  font-size: 13px;
+                  color: #fff;
+                  background: green;
+                  text-decoration: none; }
+         .modal .container .description p.desc-title, .modal .container .description p.comment-title {
+            font-size: 0.9em;
+            letter-spacing: 0.1em;
+            color: #212121; }
+         .modal .container .description p.desc-text {
+            display: inline-block;
+            float: left;
+            font-size: 0.75em;
+            letter-spacing: 0.1em;
+            color: #616161; }
+      .modal .container .labels {
+         display: inline-block;
+         float: right;
+         height: 200px;
+         width: 33%;
+         margin-top: 4px; }
+         @media (max-width: 700px) {
+            .modal .container .labels {
+               float: none;
+               width: 100%;
+               margin-top: 0px; }}
+         .modal .container .labels i.fa-tags, .modal .container .labels p.label-heading {
+            display: inline-block;
+            float: left;
+            font-size: 0.9em;
+            color: #212121; }
+            
+         .modal .container .labels p.label-heading {
+            letter-spacing: 0.1em;
+            letter-spacing: 0.1em;
+            margin-left: 8px;
+            margin-top: -4px; }
+         .modal .container .labels .label-bar {
+                border-radius: 3px;
+                cursor: pointer;
+                margin: 0 0 4px;
+                min-height: 18px;
+                padding: 8px;
+                margin-bottom:5px; }
+                .modal .container .labels div.label-bar:hover {
+                  margin-left: 3px; }
+            .modal .container .labels .label-bar p.label-bar-text {
+               color: white;
+               -webkit-margin-before: 0em;
+               -webkit-margin-after: 0em;
+               font-size: 0.8em;
+               display: inline-block;
+               float: left; }
+            .modal .container .labels .label-bar i.fa-check {
+               font-size: 0.8em;
+               display: inline-block;
+               float: right;
+               color: white;
+               margin-top: 3px; }
+                
+   .modal .container .comments-wrapper {
+      margin-top: 6px; margin-bottom:20px; }
+   .modal .container .all-comments {
+      margin-top: 40px; }
+   .modal .container .labels-wrapper {
+      margin-top: 24px; }
+            
+
+.task-heading {
+   text-align: center;
+   letter-spacing: 0.2em;
+   font-size: 2.0em;
+   font-weight: normal;
+   color: #333; }
+.card-list {
+   width: 36%;
+   background: white;
+   border: 1px solid #E2E4E6;
+   border-radius: 5px;
+   margin: 0 auto;
+   background: #E2E4E6;
+   box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+   margin-bottom: 200px; }
+   @media (max-width: 700px) {
+      .card-list {
+         margin: none;
+         width: 100%; } }
+   .add-new-card {
+      margin: 2%;
+      cursor: pointer;
+      color: #3f3f3f;
+      font-size: 1em;
+      line-height: 2em;
+      text-decoration: none; }
+   .newCard-title {   
+      font-family: sans-serif;
+      width: 95%;
+      margin: 2%;
+      min-height: 50px;
+      margin-top: 5px;
+      display: none; }
+   .task-card {
+      background-color: white;
+      margin: 2%;
+      border-bottom: 1px solid #ccc;
+      cursor: pointer; }
+      .task-card:hover { background-color: #f3f3f3; }
+      .task-card .task-container { 
+         padding: 0.1% 2% 0.1% 2%; }
+         .task-card .task-container p {
+            font-size: 0.9em;
+            letter-spacing: 0.05em;
+            -webkit-margin-before: 0.2em;
+            -webkit-margin-after: 0.2em; }
+            .task-card .task-container .task-label {
+               width: 50px;
+               height: 10px;
+               border-radius: 3px;
+               margin-top: 8px;
+               display: inline-block;
+               margin-right: 2%; }
+            .task-card .task-container .task-notifications {
+               margin-bottom: 5px;}
+               .task-card .task-container .task-notifications i  {
+                  display: inline-block;
+                  font-size: 0.8em;}
+                  .task-card .task-container .task-notifications i.fa-list {
+                     margin-right: 7px; }
+               .task-card .task-container .task-notifications .comments-number {
+                  display: inline-block;
+                  font-size: 0.8em;  }
