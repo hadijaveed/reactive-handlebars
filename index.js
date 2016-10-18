@@ -1,19 +1,4 @@
 'use strict';
-var lodash = require('lodash'),
-      Handlebars = require('handlebars');
-
-
-
-/**
- * [ReactiveHbs 'update UI changes on the data change, variable on change blocks and binds helpers and functions']
- * @param {object} options {
- *     container {string} 'id or class of container to mount the template on',
- *     template {string} 'Handlebars template script id or class',
- *     data {object} 'data context to pass to the template'
- * }
- */
-
-'use strict';
 
 /**
  * [ReactiveHbs 'update UI changes on the data change, variable on change blocks and binds helpers and functions']
@@ -173,10 +158,6 @@ ReactiveHbs.prototype.removeReactOnChange = function(attr) {
    if ( !_.get(this.options.data, attr) ) return console.error('to remove observer key should be in template data object ');
    _.unset(this.reactive, attr);
 };
-
-
-
-module.exports = ReactiveHbs;
 
 
 
