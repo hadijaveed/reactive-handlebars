@@ -12,9 +12,10 @@
     "javascript",
     "templating"
   ],
-  "author": "hadi javeed <hadij.pk@gmail.com>",
-  "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "handlebars": "^4.0.5",
     "lodash": "^4.16.4"
   }
+  "author": "hadi javeed <hadij.pk@gmail.com>",
+  "license": "ISC"
 }
