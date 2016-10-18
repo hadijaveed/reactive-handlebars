@@ -1,5 +1,6 @@
 'use strict';
-var lodash = require('lodash');
+var lodash = require('lodash'),
+      Handlebars = require('handlebars');
 
 
 
