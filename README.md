@@ -55,7 +55,7 @@ counter.events({
 
 ##### Observers
 ```js
-counter.reactOnChange('count', (tpl) => {
+counter.reactOnChange('count', { throttle: 100 }, (tpl) => {
     console.log('count have been changed ', tpl.get('count'));
 });
 
