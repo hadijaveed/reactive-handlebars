@@ -73,7 +73,7 @@ counter.stopReactOnChange('count');
 
 ### Next Steps
 
-Check out these [examples] (https://github.com/hadijaveed/reactive-handlebars/tree/master/examples) in the wild
+Check out these [examples](https://github.com/hadijaveed/reactive-handlebars/tree/master/examples) in the wild
 
 
 
