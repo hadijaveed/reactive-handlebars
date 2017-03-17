@@ -3,9 +3,9 @@
 
 Handlebars is one of the most popular templating engines. Complicated UIs, data visualizations, and systems of calculations are examples of just a few problems where organising code becomes really hard while updating the templates on change.
 
-See this [Demo] (http://codepen.io/hjaveed/pen/ZprdyP) 
+See this [Demo](http://codepen.io/hjaveed/pen/ZprdyP) 
 
-Read this article (https://medium.com/@hadijaveed/writing-reactive-templates-with-handlebarsjs-c163a2816510#.ogshxn8h8)
+Read this [article](https://medium.com/@hadijaveed/writing-reactive-templates-with-handlebarsjs-c163a2816510#.ogshxn8h8)
 
 ### How can reactive-handlebars simplify your templates ?
 * Updating variables will update their values where used in DOM.
